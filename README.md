@@ -1,76 +1,59 @@
-## :warning: Please read these instructions carefully and entirely first
-* Clone this repository to your local machine.
-* Use your IDE of choice to complete the assignment.
-* Use Javascript or preferably Typescript to complete the assignment, other languages will not be considered unfortunately.
-* When you have completed the assignment, you need to  push your code to a public repository and send the link via email.
-* Once you reply back to the email, your assignment will be considered completed. Please make sure that you have completed the assignment and pushed all code from your local machine to the repository before you reply.
-* There is no time limit for this task - however, for guidance, it is expected to typically take around 3-4 hours.
+# Assignment for Saltmine
+This is the assignment which is being submited.
+This is a OOP JS Code especially to handle Cart Transactions efficientely.
+Solid Principles could be used but as per the instructions it is not used
 
-# Begin the task
+## To run the project
+### Start the server
+Use the command `npm run serve-products` to run the server
 
-Write some code that provides the following basic shopping cart capabilities:
+### The unit test file can be run using the command
+`node test.js`
 
-1. Add a product to the cart
-   1. Specifying the product name and quantity
-   2. Retrieve the product price by issuing a request to the the [Price API](#price-api) specified below
-   3. Cart state (totals, etc.) must be available
+Also the feature can be tested manualy using the command
+`node cart.js`
 
-2. Calculate the state:
-   1. Cart subtotal (sum of price for all items)
-   2. Tax payable (charged at 12.5% on the subtotal)
-   3. Total payable (subtotal + tax)
-   4. Totals should be rounded up where required
 
-## Price API
 
-The price API is an HTTP service that returns the price details for a product, identified by it's name. The shopping cart should integrate with the price API to retrieve product prices. 
+# Test Cases
 
-### Price API Service Details
+### 1. Add Product to Cart
 
-Start the price API by running the following command: `npm run serve-products`
+| **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
+|---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Adding a product to the cart         | Ensure that a product is added to the cart correctly, and the product price is fetched from the Price API. | 1. Add `1 x cheerios` to the cart.<br> 2. Check the cart summary to confirm that the product is added.                                                        | The cart contains 1 unit of cheerios with the correct price retrieved from the API.<br> The cart subtotal is updated.   |
+| Adding multiple quantities of the same product | Ensure that the same product can be added multiple times, and the quantity is updated accordingly. | 1. Add `2 x cornflakes` to the cart.<br> 2. Add another `1 x cornflakes`.<br> 3. Check the cart summary.                                                      | The cart contains 3 units of cornflakes, with the price correctly calculated based on the quantity.                      |
 
-Base URL: `http://localhost:3001/`
+### 2. Remove Product from Cart
 
-View Product: `GET /products/{product}`
+| **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
+|---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Removing a product from the cart     | Ensure that a product can be removed from the cart, and the cart updates correctly. | 1. Add `1 x weetabix` to the cart.<br> 2. Remove `1 x weetabix`.<br> 3. Check the cart summary.                                                              | The cart no longer contains weetabix.<br> The cart subtotal updates accordingly.                                          |
+| Removing a non-existent product     | Ensure that trying to remove a product not in the cart doesn't cause errors.    | 1. Add `1 x cheerios` to the cart.<br> 2. Attempt to remove `1 x frosted flakes`.<br> 3. Check the cart summary.                                               | No error occurs.<br> The cart remains unchanged and the correct products are still in the cart.                           |
 
-List of available products
-* `cheerios`
-* `cornflakes`
-* `frosties`
-* `shreddies`
-* `weetabix`
+### 3. Cart Calculations
 
-## Example
-The below is a sample with the correct values you can use to confirm your calculations
+| **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
+|---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Calculating subtotal correctly       | Ensure that the subtotal is calculated as the sum of the product prices.        | 1. Add `2 x cornflakes` and `1 x weetabix` to the cart.<br> 2. Check the cart subtotal.                                                                       | The subtotal is correctly calculated as the sum of the prices of all products in the cart.                               |
+| Applying tax correctly               | Ensure that the tax is calculated as 12.5% of the subtotal.                      | 1. Add `1 x cornflakes` and `2 x weetabix` to the cart.<br> 2. Check the tax applied based on the subtotal.                                                    | Tax is calculated as 12.5% of the subtotal.<br> The tax is rounded if necessary.                                        |
+| Calculating total correctly          | Ensure that the total is calculated as the sum of the subtotal and tax.         | 1. Add `1 x cornflakes` and `2 x weetabix` to the cart.<br> 2. Check the total payable, which is the subtotal plus tax.                                         | The total payable is correctly calculated.<br> It is the sum of the subtotal and tax, rounded as necessary.             |
 
-### Inputs
-* Add 1 × cornflakes @ 2.52 each
-* Add another 1 x cornflakes @2.52 each
-* Add 1 × weetabix @ 9.98 each
-  
-### Results  
-* Cart contains 2 x cornflakes
-* Cart contains 1 x weetabix
-* Subtotal = 15.02
-* Tax = 1.88
-* Total = 16.90
+### 4. Edge Cases
 
-## Tips on what we’re looking for
+| **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
+|---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Adding a product with zero quantity  | Ensure that adding a product with a quantity of 0 doesn't change the cart.      | 1. Add `0 x cheerios` to the cart.<br> 2. Check the cart summary.                                                                                             | The product is not added to the cart.<br> The cart remains unchanged.                                                    |
+| Adding an invalid product            | Ensure that adding a non-existent product does not crash the cart.              | 1. Attempt to add `1 x nonexistentproduct` to the cart.<br> 2. Check the cart summary.                                                                        | An error message or validation should occur.<br> The cart should remain unchanged.                                        |
 
-* We value simplicity as an architectural virtue and as a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex.
-* We prefer simple, well tested solutions over clever solutions.
-* We will appreciate descriptive and unambiguous names for the concepts you introduce.
-* Atomic commits with descriptive messages will get you extra brownie points.
+### 5. Multiple Operations Test
 
-### DO
+| **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
+|---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| Performing multiple operations       | Test a sequence of different cart operations (add, remove, calculate).           | 1. Add `1 x cheerios`.<br> 2. Add `2 x cornflakes`.<br> 3. Remove `1 x cheerios`.<br> 4. Check the cart subtotal, tax, and total.<br> 5. Add `1 x weetabix`.      | The cart updates correctly at each step.<br> Subtotal, tax, and total are calculated accurately.                         |
 
-* ✅ Include unit tests.
-* ✅ Test both any client and logic.
-* ✅ Update the README.md with any relevant information, assumptions, and/or tradeoffs you would like to highlight.
-* ✅ Add some information on how the reviewer might test your solution.
+---
 
-### DO NOT
+### Notes
 
-* ❌ Submit any form of app, such as web APIs, browser, desktop, or command-line applications.
-* ❌ Add unnecessary layers of abstraction.
-* ❌ Add unnecessary patterns/ architectural features that aren’t called for e.g. persistent storage.
+- **API Integration**: Ensure proper integration with the Price API and handle errors (e.g., non-existent products).
