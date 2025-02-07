@@ -7,6 +7,12 @@ class Cart {
     this.tax = 0;
     this.total = 0;
   }
+  clear() {
+    this.items = [];
+    this.subtotal = 0;
+    this.tax = 0;
+    this.total = 0;
+  }
 
   async addProduct(productName, quantity = 1) {
     const productPrice = await this.getProductPrice(productName);

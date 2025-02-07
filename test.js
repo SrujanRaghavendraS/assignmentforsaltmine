@@ -20,38 +20,39 @@ async function runTests() {
 async function testAddProduct(cart) {
   await cart.addProduct('cheerios', 2);
   cart.printCartSummary();
+  cart.clear();
   console.log("\n");
 }
 
 async function testAddMultipleProducts(cart) {
   await cart.addProduct('cornflakes', 3);
   await cart.addProduct('frosties', 1);
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
 async function testRemoveProduct(cart) {
   cart.removeProduct('cheerios');
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
 async function testRemoveNonExistentProduct(cart) {
   cart.removeProduct('shreddies');
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
 async function testRemoveLastItem(cart) {
   await cart.addProduct('weetabix', 1);
   cart.removeProduct('weetabix');
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
 async function testAddProductWithZeroQuantity(cart) {
   await cart.addProduct('cheerios', 0);
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
@@ -60,7 +61,7 @@ async function testAddAndRemoveOperations(cart) {
   await cart.addProduct('cornflakes', 1);
   await cart.removeProduct('cheerios');
   await cart.addProduct('frosties', 3);
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
@@ -73,7 +74,7 @@ async function testMultipleAdditionsAndRemovals(cart) {
   await cart.removeProduct('cornflakes');
   await cart.addProduct('weetabix', 2);
   
-  cart.printCartSummary();
+  cart.printCartSummary();cart.clear();
   console.log("\n");
 }
 
