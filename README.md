@@ -1,7 +1,7 @@
 # Assignment for Saltmine
 This is the assignment which is being submited.
 This is a OOP JS Code especially to handle Cart Transactions efficientely.
-Solid Principles could be used but as per the instructions it is not used
+Solid Principles could be used but as per the instructions not to add unnecessary layers of Abstraction it is not used.
 
 ## To run the project
 ### The server is nothing but JSON Server
@@ -59,3 +59,26 @@ Also the feature can be tested manualy using the command
 ### Notes
 
 - **API Integration**: Ensure proper integration with the Price API and handle errors (e.g., non-existent products).
+- **Dynamic Product display**: The code works dynamically retrieving the data from the json file .So any changes in the db.json file affects the product list being displayed during the add product to cart feature
+- **Serial number Usage**: During the usage of the code especially when adding and deleting,Please ensure that you are using the serial numbers displayed .Be careful especially when deleting choose the sl number of the produts displayed if u give some other option it will show as invalid and will continue the remaining process but nothing from the cart will be deleted 
+
+  #Results
+  1)The initial Navigation section
+  ![image](https://github.com/user-attachments/assets/74c40515-1151-4605-87df-ed6d6423b2df)
+
+  2)Validating the Running Server
+  ![image](https://github.com/user-attachments/assets/17ef7fbf-f983-4d4d-a940-1efab19b8b86)
+
+  3)Viewing the cart after addition
+  ![image](https://github.com/user-attachments/assets/e51627b8-2e55-4c50-acc1-cd588641da11)
+
+  4) Deleting the item from the cart and then viewing it
+  ![image](https://github.com/user-attachments/assets/77625a78-e26d-49b4-8b94-9936d660994e)
+
+  5)Deleting from a empty cart
+  ![image](https://github.com/user-attachments/assets/929738d1-3ac7-45d0-ac5b-268bcf8bf8c2)
+
+
+
+
+
