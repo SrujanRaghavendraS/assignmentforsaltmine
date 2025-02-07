@@ -4,6 +4,10 @@ This is a OOP JS Code especially to handle Cart Transactions efficientely.
 Solid Principles could be used but as per the instructions not to add unnecessary layers of Abstraction it is not used.
 
 ## To run the project
+### Clone the Repository
+Use the command `git clone https://github.com/SrujanRaghavendraS/assignmentforsaltmine.git`
+Change the directory from terminal by using `cd assignmentforsaltmine`
+
 ### The server is nothing but JSON Server
 So run the command `npm install` to install all the dependencies
 ### Start the server
