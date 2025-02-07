@@ -24,6 +24,7 @@ class Cart {
         };
         this.items.push(product);
       }
+
       this.recalculateCart();
     } else {
       console.log("Product could not be added. Please check the product name.");
@@ -49,17 +50,17 @@ class Cart {
 
   async getProductPrice(productName) {
     try {
-      const response = await fetch(`http://localhost:3001/products/${productName}`);
-      if (!response.ok) {
-        throw new Error("Product not found");
-      }
-      const product = await response.json();
-      return product.price;
+        const response = await fetch(`http://localhost:3001/products/${productName}`);
+        if (!response.ok) {
+            throw new Error("Product not found");
+        }
+        const product = await response.json();
+        return product.price;
     } catch (error) {
-      console.error(error);
-      return null;
+        console.log("Pls Turn ON the server using the command `npm run serve-products` ");
+        return null; // Instead of exiting, return null
     }
-  }
+}
 
   recalculateCart() {
     if (this.items.length === 0) {
@@ -115,8 +116,6 @@ async function showOptions() {
   } 
   else if (option=="3"){
     cart.printCartSummary();await showOptions();
-
-  
   }
   else if (option === "4") {
     rl.close();
@@ -127,36 +126,42 @@ async function showOptions() {
 }
 
 async function addProductToCart() {
-  console.log("\nChoose a product to add:");
-  console.log("1. Cheerios");
-  console.log("2. Cornflakes");
-  console.log("3. Frosties");
-  console.log("4. Shreddies");
-  console.log("5. Weetabix");
+  try {
+      const response = await fetch("http://localhost:3001/products/");
+      if (!response.ok) {
+          throw new Error("Failed to fetch products.");
+      }
+      const productList = await response.json();
 
-  const productChoice = await getUserInput("Enter the number of the product to add: ");
+      if (productList.length === 0) {
+          console.log("No products available.");
+          await showOptions();
+          return;
+      }
 
-  let productName = "";
-  if (productChoice === "1") {
-    productName = "cheerios";
-  } else if (productChoice === "2") {
-    productName = "cornflakes";
-  } else if (productChoice === "3") {
-    productName = "frosties";
-  } else if (productChoice === "4") {
-    productName = "shreddies";
-  } else if (productChoice === "5") {
-    productName = "weetabix";
-  } else {
-    console.log("Invalid option. Please try again.");
-    await addProductToCart();
-    return;
+      console.log("\nChoose a product to add:");
+      productList.forEach((product, index) => {
+          console.log(`${index + 1}. ${product.title}`);
+      });
+
+      const productChoice = parseInt(await getUserInput("Enter the number of the product to add: "), 10) - 1;
+
+      if (productChoice >= 0 && productChoice < productList.length) {
+          const productName = productList[productChoice].id; // Dynamically fetch product ID
+          await cart.addProduct(productName);
+      } else {
+          console.log("Invalid option. Please try again.");
+          await addProductToCart();
+          return;
+      }
+
+      await showOptions();
+  } catch (error) {
+      console.log("Error fetching products. Please ensure the server is running (`npm run serve-products`).");
+      await showOptions();
   }
-
-  await cart.addProduct(productName);
-  cart.printCartSummary();
-  await showOptions();
 }
+
 
 async function removeProductFromCart() {
   cart.printCartSummary();

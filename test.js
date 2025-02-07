@@ -14,7 +14,7 @@ async function runTests() {
   await testAddAndRemoveOperations(cart);
   await testMultipleAdditionsAndRemovals(cart);
 
-  console.log("All tests completed.");
+  console.log("All tests completed.");process.exit(1);
 }
 
 async function testAddProduct(cart) {

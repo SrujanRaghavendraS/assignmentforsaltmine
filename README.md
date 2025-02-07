@@ -4,6 +4,8 @@ This is a OOP JS Code especially to handle Cart Transactions efficientely.
 Solid Principles could be used but as per the instructions it is not used
 
 ## To run the project
+### The server is nothing but JSON Server
+So run the command `npm install` to install all the dependencies
 ### Start the server
 Use the command `npm run serve-products` to run the server
 
@@ -44,7 +46,7 @@ Also the feature can be tested manualy using the command
 | **Test Case**                         | **Test Description**                                                            | **Test Steps**                                                                                                                                                 | **Expected Outcome**                                                                                                    |
 |---------------------------------------|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
 | Adding a product with zero quantity  | Ensure that adding a product with a quantity of 0 doesn't change the cart.      | 1. Add `0 x cheerios` to the cart.<br> 2. Check the cart summary.                                                                                             | The product is not added to the cart.<br> The cart remains unchanged.                                                    |
-| Adding an invalid product            | Ensure that adding a non-existent product does not crash the cart.              | 1. Attempt to add `1 x nonexistentproduct` to the cart.<br> 2. Check the cart summary.                                                                        | An error message or validation should occur.<br> The cart should remain unchanged.                                        |
+| Adding an invalid product            | Ensure that adding a non-existent product does not crash the cart.              | 1. Attempt to add `1 x nonexistentproduct` to the cart.<br> 2. Check the cart summary.                                                                        | An error message or validation should occur.<br> The cart should remain unchanged.                                        |3. Try to remove from empty cart summary.                                                                        | An error message or validation should occur.<br> The cart should is empty.                                        |
 
 ### 5. Multiple Operations Test
 
