@@ -9,11 +9,14 @@ So run the command `npm install` to install all the dependencies
 ### Start the server
 Use the command `npm run serve-products` to run the server
 
+### Manual testing
+To run the ccode use the command
+`node cart.js`
+
 ### The unit test file can be run using the command
 `node test.js`
 
-Also the feature can be tested manualy using the command
-`node cart.js`
+
 
 
 
@@ -64,18 +67,23 @@ Also the feature can be tested manualy using the command
 
   #Results
   1)The initial Navigation section
+  
   ![image](https://github.com/user-attachments/assets/74c40515-1151-4605-87df-ed6d6423b2df)
 
   2)Validating the Running Server
+  
   ![image](https://github.com/user-attachments/assets/17ef7fbf-f983-4d4d-a940-1efab19b8b86)
 
   3)Viewing the cart after addition
+  
   ![image](https://github.com/user-attachments/assets/e51627b8-2e55-4c50-acc1-cd588641da11)
 
   4) Deleting the item from the cart and then viewing it
+     
   ![image](https://github.com/user-attachments/assets/77625a78-e26d-49b4-8b94-9936d660994e)
 
   5)Deleting from a empty cart
+  
   ![image](https://github.com/user-attachments/assets/929738d1-3ac7-45d0-ac5b-268bcf8bf8c2)
 
 
